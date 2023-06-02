@@ -1,2 +1,5 @@
 .idea/
 __pycache__/
+api/model/class/
+api/model/similar/
+api/model/work-exp/

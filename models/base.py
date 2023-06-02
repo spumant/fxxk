@@ -5,7 +5,6 @@
 
 from tortoise import fields
 from tortoise.models import Model
-import mongoengine
 
 
 class User(Model):
@@ -40,14 +39,3 @@ class Worke_Match(Model):
     wm_3 = fields.FloatField(description='岗位3', )
     wm_4 = fields.FloatField(description='岗位4', )
     wm_5 = fields.FloatField(description='岗位5', )
-
-
-class Item(mongoengine.Document):
-    id = mongoengine.StringField()
-    title = mongoengine.StringField()
-    txt = mongoengine.ListField()
-    img = mongoengine.StringField()
-    tag = mongoengine.StringField()
-    like = mongoengine.IntField()
-    collection = mongoengine.IntField()
-    meta = {'collection': 'item', 'strict': False}
