@@ -11,7 +11,7 @@ question = ['工作年限？']
 
 
 async def get_exp_year(id):
-    context = get_context(id)
+    context = await get_context(id)
 
     length = len(context)
     start = 0

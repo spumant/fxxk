@@ -3,12 +3,14 @@ from curd.similar_sen import Clerks_score, Marketing_score, Product_score, Finan
 
 
 async def get_all_similar(id):
-    sentence = get_all_text(id)
-    Cscore = Clerks_score(sentence)
-    Mscore = Marketing_score(sentence)
-    Pscore = Product_score(sentence)
-    Fscore = Finance_score(sentence)
-    Pjscore = Project_score(sentence)
+    sentence = await get_all_text(id)
+    # print("*************************************************************")
+    # print(sentence)
+    Cscore = await Clerks_score(sentence)
+    Mscore = await Marketing_score(sentence)
+    Pscore = await Product_score(sentence)
+    Fscore = await Finance_score(sentence)
+    Pjscore = await Project_score(sentence)
 
     similar_dict = {
         'Clerks': Cscore,

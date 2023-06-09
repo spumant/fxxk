@@ -26,10 +26,10 @@ async def Clerks_score(sentence):
     encode_input = tokenizer(sentences, padding=True, truncation=True, return_tensors='pt')
     with torch.no_grad():
         model_output = model(**encode_input)
-    sentences_embeddings = mean_pooling(model_output, encode_input['attention_mask'])
+    sentences_embeddings = await mean_pooling(model_output, encode_input['attention_mask'])
     sentences_embeddings = F.normalize(sentences_embeddings, p=2, dim=1)
     similar = torch.cosine_similarity(sentences_embeddings[0], sentences_embeddings[1], dim=0)
-    return similar
+    return similar.item()
 
 
 async def Marketing_score(sentence):
@@ -44,10 +44,10 @@ async def Marketing_score(sentence):
     encode_input = tokenizer(sentences, padding=True, truncation=True, return_tensors='pt')
     with torch.no_grad():
         model_output = model(**encode_input)
-    sentences_embeddings = mean_pooling(model_output, encode_input['attention_mask'])
+    sentences_embeddings = await mean_pooling(model_output, encode_input['attention_mask'])
     sentences_embeddings = F.normalize(sentences_embeddings, p=2, dim=1)
     similar = torch.cosine_similarity(sentences_embeddings[0], sentences_embeddings[1], dim=0)
-    return similar
+    return similar.item()
 
 
 async def Product_score(sentence):
@@ -65,10 +65,10 @@ async def Product_score(sentence):
     encode_input = tokenizer(sentences, padding=True, truncation=True, return_tensors='pt')
     with torch.no_grad():
         model_output = model(**encode_input)
-    sentences_embeddings = mean_pooling(model_output, encode_input['attention_mask'])
+    sentences_embeddings = await mean_pooling(model_output, encode_input['attention_mask'])
     sentences_embeddings = F.normalize(sentences_embeddings, p=2, dim=1)
     similar = torch.cosine_similarity(sentences_embeddings[0], sentences_embeddings[1], dim=0)
-    return similar
+    return similar.item()
 
 
 async def Finance_score(sentence):
@@ -84,10 +84,10 @@ async def Finance_score(sentence):
     encode_input = tokenizer(sentences, padding=True, truncation=True, return_tensors='pt')
     with torch.no_grad():
         model_output = model(**encode_input)
-    sentences_embeddings = mean_pooling(model_output, encode_input['attention_mask'])
+    sentences_embeddings = await mean_pooling(model_output, encode_input['attention_mask'])
     sentences_embeddings = F.normalize(sentences_embeddings, p=2, dim=1)
     similar = torch.cosine_similarity(sentences_embeddings[0], sentences_embeddings[1], dim=0)
-    return similar
+    return similar.item()
 
 
 async def Project_score(sentence):
@@ -103,7 +103,7 @@ async def Project_score(sentence):
     encode_input = tokenizer(sentences, padding=True, truncation=True, return_tensors='pt')
     with torch.no_grad():
         model_output = model(**encode_input)
-    sentences_embeddings = mean_pooling(model_output, encode_input['attention_mask'])
+    sentences_embeddings = await mean_pooling(model_output, encode_input['attention_mask'])
     sentences_embeddings = F.normalize(sentences_embeddings, p=2, dim=1)
     similar = torch.cosine_similarity(sentences_embeddings[0], sentences_embeddings[1], dim=0)
-    return similar
+    return similar.item()

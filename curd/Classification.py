@@ -1,16 +1,31 @@
 from database.mongodb import connect_mongo
+import asyncio
+import nest_asyncio
+
+nest_asyncio.apply()
+
+
+# async def run(id):
+#     Item = await connect_mongo()
+#     id = int(id) + 1
+#     item = await Item.find_one({'id': {'$lt': id}})
+#     return item
 
 
 async def get_all_text(id):
-    Item = connect_mongo()
-    item = await Item.find_one({'id': id})
-    skill = item['skill']
-    skill_str = "个人技能：" + "，".join(skill)
+    Item = await connect_mongo()
+    id = int(id)
+    item = await Item.find_one({'id': {'$eq': id}})
+    # item = asyncio.get_event_loop().run_until_complete(run(id))
+    # print("****************************", item, "*********************************")
+    skill = item['skills']
+    skill_str = "个人技能：" + skill
     jobHunt_str = "求职意愿：" + item['jobHunt']
-    experiences_str = "工作经历：" + item['experiences']
-    educational_str = "教育经历" + item['educational']
-    award_str = "获奖证书：" + "，".join(item['award'])
-    text = skill_str + jobHunt_str + experiences_str + educational_str + award_str
+    # experiences_str = "工作经历：" + item['experiences']
+    # educational_str = "教育经历" + item['educational']
+    self_str = item['self']
+    award_str = "获奖证书：" + item['award']
+    text = skill_str + jobHunt_str + self_str + award_str
     return text
 
 

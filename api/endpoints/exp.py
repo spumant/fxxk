@@ -6,5 +6,5 @@ router = APIRouter()
 
 @router.get('/exp/{id}')
 async def get_exp(id):
-    years = get_exp_year(id)
+    years = await get_exp_year(id)
     return years

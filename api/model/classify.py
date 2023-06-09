@@ -11,15 +11,15 @@ classifier = pipeline("zero-shot-classification", model=model, tokenizer=tokeniz
 
 async def work_classification(id):
     candidate_labels = ["文员", "市场营销", "项目主管", "产品运营", "财务"]
-    text = get_all_text(id)
+    text = await get_all_text(id)
     work_cla = classifier(text, candidate_labels)
-    work_dict = get_work_cla_dict(work_cla)
+    work_dict = await get_work_cla_dict(work_cla)
     return work_dict
 
 
 async def tag_classification(id):
     candidate_labels = ["工作变动稳定", "工作变动频繁"]
-    work = get_context(id)
+    work = await get_context(id)
     tag_cla = classifier(work, candidate_labels)
-    tag_dict = get_tag_dict(tag_cla)
+    tag_dict = await get_tag_dict(tag_cla)
     return tag_dict

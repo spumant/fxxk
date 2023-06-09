@@ -5,7 +5,6 @@
 from datetime import datetime
 from pydantic import Field, BaseModel
 from typing import Optional, List
-import mongoengine
 
 
 class UserInfo(BaseModel):
