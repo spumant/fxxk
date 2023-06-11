@@ -1,13 +1,15 @@
 from fastapi import APIRouter
 from api.model.classify import work_classification, tag_classification
-from fastapi.responses import JSONResponse
+from schemas.user import UserInfo
 
 router = APIRouter()
 
 
-@router.get('/zero/{id}')
-async def get_work_scores(id):
-    work_scores = await work_classification(id)
+@router.post('/zero')
+async def get_work_scores(temp: UserInfo):
+    id = temp.id
+    ids = temp.ids
+    work_scores = await work_classification(id, ids)
     return work_scores
 
 

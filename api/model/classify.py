@@ -1,5 +1,5 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
-from curd.Classification import get_all_text, get_work_cla_dict, get_tag_dict
+from curd.Classification import get_all_text, get_work_cla_dict, get_tag_dict, get_candidate
 from curd.workexp import get_context
 
 model_name = "D:\python2\code7\Fxxk-alogrithm\\api\model\class\\xlm-roberta-large-xnli-anli"
@@ -9,8 +9,8 @@ model = AutoModelForSequenceClassification.from_pretrained(model_name)
 classifier = pipeline("zero-shot-classification", model=model, tokenizer=tokenizer)
 
 
-async def work_classification(id):
-    candidate_labels = ["文员", "市场营销", "项目主管", "产品运营", "财务"]
+async def work_classification(id, ids):
+    candidate_labels = await get_candidate(ids)
     text = await get_all_text(id)
     work_cla = classifier(text, candidate_labels)
     work_dict = await get_work_cla_dict(work_cla)
