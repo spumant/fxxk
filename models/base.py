@@ -8,34 +8,45 @@ from tortoise.models import Model
 
 
 class User(Model):
-    privilege = fields.CharField(max_length=255, null=True, description='权限', )
-    pwd = fields.CharField(max_length=255, null=True, description='密码', )
-    uid = fields.IntField(pk=True, description='userid', )
-    user_name = fields.CharField(max_length=255, null=True, description='名字', )
-    view = fields.IntField(description='区分用户视图', )
+    uid = fields.IntField(pk=True, )
+    hash_code = fields.CharField(unique=True, max_length=255, null=True, )
 
 
 class Worker(Model):
-    age = fields.IntField(description='年龄', )
-    e_mail = fields.CharField(max_length=255, null=True, description='邮件', )
-    edu_level = fields.IntField(description='教育水平（最高）', )
-    edu_school = fields.CharField(max_length=255, null=True, description='毕业院校（最高）', )
-    location = fields.CharField(max_length=255, null=True, description='地点', )
-    phone_number = fields.CharField(max_length=255, null=True, description='电话号码', )
-    sex = fields.CharField(max_length=255, null=True, description='性别', )
-    statue = fields.CharField(max_length=255, null=True, description='政治身份', )
-    url_format = fields.CharField(max_length=255, null=True, description='简历文件格式标识', )
-    urls = fields.CharField(max_length=255, null=True, description='简历url', )
-    view = fields.IntField(description='区分用户视图', )
-    wid = fields.IntField(pk=True, description='workerid', )
-    work_year = fields.IntField(description='工作经历', )
-    worker_name = fields.CharField(max_length=255, description='名字', )
+    wid = fields.IntField(pk=True, )
+    worker_name = fields.CharField(index=True, max_length=255, )
+    sex = fields.CharField(max_length=255, null=True, )
+    age = fields.CharField(max_length=255, null=True, )
+    phone_number = fields.CharField(max_length=255, null=True, )
+    e_mail = fields.CharField(max_length=255, null=True, )
+    location = fields.CharField(max_length=255, null=True, )
+    edu_school = fields.CharField(max_length=255, null=True, )
+    edu_level = fields.CharField(max_length=255, null=True, )
+    work_year = fields.IntField()
+    statue = fields.CharField(max_length=255, null=True, )
+    urls = fields.CharField(max_length=255, null=True, )
+    url_format = fields.CharField(max_length=255, null=True, )
+    hash_code = fields.CharField(unique=True, max_length=255, null=True, )
 
 
-class Worke_Match(Model):
-    wid = fields.IntField(pk=True, description='workerid', )
-    wm_1 = fields.FloatField(description='岗位1', )
-    wm_2 = fields.FloatField(description='岗位2', )
-    wm_3 = fields.FloatField(description='岗位3', )
-    wm_4 = fields.FloatField(description='岗位4', )
-    wm_5 = fields.FloatField(description='岗位5', )
+class Matchwork(Model):
+    minfo = fields.IntField(pk=True, )
+    wid = fields.IntField(index=True, )
+    jid = fields.IntField()
+    match = fields.FloatField()
+
+
+class Job(Model):
+    jid = fields.IntField(pk=True, )
+    jname = fields.CharField(index=True, max_length=255, null=True, )
+    jneed_age = fields.IntField()
+    jneed_edu = fields.CharField(max_length=255, null=True, )
+    jneed_other = fields.TextField(null=True, )
+    jneed_year = fields.CharField(max_length=255, null=True, )
+    hash_code = fields.CharField(index=True, max_length=255, null=True, )
+
+
+class Have(Model):
+    hid = fields.IntField(pk=True, )
+    uid = fields.IntField(index=True, )
+    wid = fields.IntField()
