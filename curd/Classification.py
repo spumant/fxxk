@@ -39,7 +39,7 @@ async def get_tag_dict(tag_cla):
     scores = tag_cla['scores']
 
     tag_dict = {
-        labels[0]: scores[1],
+        labels[0]: scores[0],
         labels[1]: scores[1]
     }
 
