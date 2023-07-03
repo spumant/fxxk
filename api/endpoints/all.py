@@ -1,7 +1,11 @@
-from schemas.user import UserInfo
+import random
+
+from schemas.user import UserInfo, SortInfo
 from fastapi import APIRouter
 from curd.all import get_all_dict, to_mongodb
 from database.mongodb import connect_result
+from curd.mysort import mine
+from api.endpoints.classification import get_tag_scores
 
 router = APIRouter()
 
@@ -19,3 +23,20 @@ async def get_result(id):
     result = await connect_result()
     document = await result.find_one({'id': id}, {'_id': 0})
     return document
+
+
+@router.post('/sort')
+async def get_sorted(temp: SortInfo):
+    ids = temp.ids
+    condition = temp.condition
+    return await mine(ids, condition)
+
+
+@router.get('/degree/{id}')
+async def tag(id):
+    id = int(id)
+    document = await get_result(id)
+    if document['tag'] == '工作变动频繁':
+        return random.randint(80, 100)
+    else:
+        return random.randint(1, 20)
