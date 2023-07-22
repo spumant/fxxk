@@ -6,7 +6,7 @@ import json
 router = APIRouter()
 
 
-@router.post('/similar')
+@router.post("/similar")
 async def get_similar(temp: UserInfo):
     id = temp.id
     ids = temp.ids

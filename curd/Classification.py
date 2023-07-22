@@ -8,7 +8,8 @@ nest_asyncio.apply()
 
 async def get_all_text(id):
     Item = await connect_mongo()
-    id = int(id)
+    id = str(id)
+    print(id, "----------------------------------------------------")
     item = await Item.find_one({'id': {'$eq': id}})
     skill = item['skills']
     skill_str = "个人技能：" + skill

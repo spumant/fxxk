@@ -1,0 +1,14 @@
+aioredis==2.0.1
+fastapi==0.100.0
+motor==3.1.2
+nest_asyncio==1.5.6
+passlib==1.7.4
+pydantic==1.10.2
+pydantic==1.10.7
+python-dotenv==1.0.0
+starlette==0.17.1
+torch==2.0.0+cu118
+torch_xla==1.0
+tortoise==0.1.1
+tqdm==4.65.0
+transformers==4.29.1

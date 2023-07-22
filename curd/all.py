@@ -38,10 +38,10 @@ async def get_all_dict(temp: UserInfo):
         tmp = {list(all_scores[i].keys())[0]: final[i].item()}
         all_scores_final.append(tmp)
 
-    if tag_scores['工作变动稳定'] > tag_scores['工作变动频繁']:
-        all_scores_final.append({"tag": '工作变动稳定'})
-    elif tag_scores['工作变动稳定'] < tag_scores['工作变动频繁']:
-        all_scores_final.append({"tag": '工作变动频繁'})
+    # if tag_scores['工作变动稳定'] > tag_scores['工作变动频繁']:
+    #     all_scores_final.append({"tag": '工作变动稳定'})
+    # elif tag_scores['工作变动稳定'] < tag_scores['工作变动频繁']:
+    #     all_scores_final.append({"tag": '工作变动频繁'})
 
     all_dict = {}
     for dic in all_scores_final:
